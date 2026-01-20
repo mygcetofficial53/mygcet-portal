@@ -20,15 +20,17 @@ class GmsScraperService {
   static String? _webSessionId;
 
   static String get _baseUrl {
-    String url = kIsWeb 
-        ? 'https://corsproxy.io/?http://202.129.240.148:8080/GIS' 
-        : 'http://202.129.240.148:8080/GIS';
+    String targetUrl = 'http://202.129.240.148:8080/GIS';
     
     // Manual URL rewriting for session persistence on Web
     if (kIsWeb && _webSessionId != null) {
-      url += ';jsessionid=$_webSessionId';
+      targetUrl += ';jsessionid=$_webSessionId';
     }
-    return url;
+    
+    if (kIsWeb) {
+      return 'https://corsproxy.io/?$targetUrl';
+    }
+    return targetUrl;
   }
       
   static String get _loginUrl => '$_baseUrl/StudentLogin.jsp';
