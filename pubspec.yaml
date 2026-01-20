@@ -1,11 +1,11 @@
 name: gcet_tracker
 description: "MyGCET - Student portal for attendance, materials, results and more"
-publish_to: 'none'
+publish_to: "none"
 
 version: 3.0.0+3
 
 environment:
-  sdk: ^3.10.4
+  sdk: ^3.5.0
 
 dependencies:
   flutter:
@@ -57,7 +57,7 @@ flutter_launcher_icons:
 
 flutter:
   uses-material-design: true
-  
+
   assets:
     - assets/images/
     - assets/cloud.png
