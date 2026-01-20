@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://mygcetofficial53.github.io/mygcet-portal/sitemap.xml
+Sitemap: https://mygcet.netlify.app/sitemap.xml
