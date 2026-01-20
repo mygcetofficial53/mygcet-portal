@@ -1,0 +1,6 @@
+# Robots.txt for MyGCET
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mygcet.netlify.app/sitemap.xml
