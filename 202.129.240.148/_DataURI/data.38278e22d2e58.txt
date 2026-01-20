@@ -1,0 +1,1 @@
+chrome-extension://iabnclnclchijjckhdljmocghgmgnnii/inject/index.js

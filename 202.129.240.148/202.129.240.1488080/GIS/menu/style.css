@@ -1,0 +1,386 @@
+/* 
+    Document   : style
+    Created on : Jul 6, 2011, 11:35:44 PM
+    Author     : gcet
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root {
+    display: block;
+}
+
+.zs {
+    z-index: 999;
+}
+
+.institute {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.institute1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.notice {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.notice_date {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.notice_data {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.tablemenu {
+    background-color: #e8e6e6;
+}
+
+.tablelogin {
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-color: #666666;
+    border-left-color: #666666;
+    border-bottom-color: #666666;
+    border-top-color: #666666;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablelogin th {
+    height: 25px;
+    background-color: #e8e6e6;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    font-variant: small-caps;
+    background-position: left center;
+    vertical-align: middle;
+    margin-left: 50px;
+    margin-right: 10px;
+    left: 5px;
+    right: 5px;
+}
+
+.tablelogin td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.tablelogin td input {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-color: #cccccc;
+    border-left-color: #cccccc;
+    border-bottom-color: #cccccc;
+    border-top-color: #cccccc;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablelogin td select {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-color: #cccccc;
+    border-left-color: #cccccc;
+    border-bottom-color: #cccccc;
+    border-top-color: #cccccc;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablelogin td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-color: #cccccc;
+    border-left-color: #cccccc;
+    border-bottom-color: #cccccc;
+    border-top-color: #cccccc;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablelogin2 td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.tablelogin2 td input {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border-right-color: #cccccc;
+    border-left-color: #cccccc;
+    border-bottom-color: #cccccc;
+    border-top-color: #cccccc;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablelogin2 td select {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-color: #cccccc;
+    border-left-color: #cccccc;
+    border-bottom-color: #cccccc;
+    border-top-color: #cccccc;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablelogin2 td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-color: #cccccc;
+    border-left-color: #cccccc;
+    border-bottom-color: #cccccc;
+    border-top-color: #cccccc;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablematerial {
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-color: #666666;
+    border-left-color: #666666;
+    border-bottom-color: #666666;
+    border-top-color: #666666;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablematerial th {
+    height: 25px;
+    background-color: #dddddd;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    background-position: left center;
+    vertical-align: middle;
+    margin-left: 50px;
+    margin-right: 10px;
+    left: 5px;
+    right: 5px;
+    text-align: left;
+}
+
+.tablematerial td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+.tablematerial td input {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-color: #cccccc;
+    border-left-color: #cccccc;
+    border-bottom-color: #cccccc;
+    border-top-color: #cccccc;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablematerial td select {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-color: #cccccc;
+    border-left-color: #cccccc;
+    border-bottom-color: #cccccc;
+    border-top-color: #cccccc;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablematerial td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-color: #cccccc;
+    border-left-color: #cccccc;
+    border-bottom-color: #cccccc;
+    border-top-color: #cccccc;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tablematerial1 {
+    background-color: #e8e6e6;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.tablematerial2 {
+    background-color: #f5f4f4;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.tablematerial3 {
+    background-color: #ffcc33;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.tableaddstudent {
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-color: #666666;
+    border-left-color: #666666;
+    border-bottom-color: #666666;
+    border-top-color: #666666;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+}
+
+.tableaddstudent th {
+    height: 25px;
+    background-color: #cccccc;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    background-position: left center;
+    vertical-align: middle;
+    margin-left: 50px;
+    margin-right: 10px;
+    left: 5px;
+    right: 5px;
+    text-align: left;
+}
+
+.tableaddstudent td {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #999999;
+}
+
+.tableaddstudent td input {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-right-color: #666666;
+    border-left-color: #666666;
+    border-bottom-color: #666666;
+    border-top-color: #666666;
+    background-color: #f7f7f6;
+}
+
+.tableaddstudent td select {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-right-color: #666666;
+    border-left-color: #666666;
+    border-bottom-color: #666666;
+    border-top-color: #666666;
+    background-color: #f7f7f6;
+}
+
+.tableaddstudent td textarea {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-right-color: #666666;
+    border-left-color: #666666;
+    border-bottom-color: #666666;
+    border-top-color: #666666;
+    background-color: #f7f7f6;
+}
+
+.hr {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    color: #993300;
+    font-weight: normal;
+}
+
+.presentcheck {
+    background-color: #009966;
+    color: #009933;
+}
+
+.ColouredCheckBox {
+    background: url(checkbox.gif) no-repeat center center;
+    padding-left: 3px;
+}
+
+.ColouredCheckBox input {
+    margin: 0;
+    padding: 0;
+    FILTER: progid: DXImageTransform.Microsoft.Alpha(style=0, opacity=80);
+}
+
+.verifyheader {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}

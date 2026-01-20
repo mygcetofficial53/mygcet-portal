@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="GCET Tracker - Student Management System for G H Patel College of Engineering & Technology">
+  <title>MyGCET - Student Management System</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- App Container -->
+  <div id="app">
+    <!-- Login Page (default) -->
+    <div id="login-page" class="login-page page">
+      <div class="login-container">
+        <!-- Header -->
+        <div class="login-header">
+          <div class="login-logo">
+            <img src="assets/images/logo.png" alt="GCET Logo">
+          </div>
+          <h1 class="login-title">MyGCET</h1>
+          <p class="login-subtitle">Student Management System</p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="login-card">
+          <h2 class="login-card-title">Welcome Back!</h2>
+          <p class="login-card-subtitle">Sign in with your GMS credentials</p>
+
+          <!-- Error Banner (hidden by default) -->
+          <div id="login-error" class="error-banner" style="display: none;">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="login-error-text">Invalid credentials</span>
+          </div>
+
+          <!-- Login Form -->
+          <form id="login-form">
+            <div class="form-group">
+              <div class="input-icon-wrapper">
+                <i class="fas fa-user icon-left"></i>
+                <input type="text" id="enrollment" class="form-input" placeholder="Enrollment Number" required
+                  autocomplete="username">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-icon-wrapper">
+                <i class="fas fa-lock icon-left"></i>
+                <input type="password" id="password" class="form-input has-right-icon" placeholder="Password" required
+                  autocomplete="current-password">
+                <i class="fas fa-eye icon-right" id="toggle-password"></i>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="login-btn">
+              <span id="login-btn-text">Sign In</span>
+              <i class="fas fa-arrow-right" id="login-btn-icon"></i>
+              <div class="spinner" id="login-spinner" style="display: none;"></div>
+            </button>
+          </form>
+
+          <div class="info-banner mt-lg">
+            <i class="fas fa-info-circle"></i>
+            <span>Use your GMS portal credentials to login</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="dashboard-page page animated-bg" style="display: none;">
+      <!-- Header with blue gradient -->
+      <div class="dashboard-header" style="background: linear-gradient(135deg, #0D47A1, #1565C0, #1976D2);">
+        <div class="user-info">
+          <div class="user-avatar">
+            <img src="assets/images/logo.png" alt="Avatar">
+          </div>
+          <div class="user-details">
+            <div class="greeting">Good Morning,</div>
+            <div class="user-name" id="dashboard-user-name">Student</div>
+            <div class="status-badge">
+              <span class="badge badge-success" id="attendance-status">
+                <i class="fas fa-check-circle"></i> On Track
+              </span>
+            </div>
+          </div>
+          <button class="logout-btn" id="logout-btn" title="Logout">
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="quick-stats">
+        <div class="grid grid-3 gap-md">
+          <div class="stat-card gradient-attendance">
+            <i class="fas fa-check-circle"></i>
+            <div class="stat-value" id="stat-attendance">--%</div>
+            <div class="stat-label">Attendance</div>
+          </div>
+          <div class="stat-card gradient-card">
+            <i class="fas fa-clock"></i>
+            <div class="stat-value" id="stat-next-class">--</div>
+            <div class="stat-label">Next Class</div>
+          </div>
+          <div class="stat-card gradient-pink">
+            <i class="fas fa-book"></i>
+            <div class="stat-value" id="stat-subjects">--</div>
+            <div class="stat-label">Subjects</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Holidays Section -->
+      <div class="holidays-section" id="holidays-section" style="display: none;">
+        <div class="flex items-center justify-between mb-md">
+          <h3 class="section-title" style="margin-bottom: 0;">
+            <i class="fas fa-gift text-warning"></i> Upcoming Holidays
+          </h3>
+          <a href="#" class="text-primary" onclick="App.navigateTo('calendar')">See All</a>
+        </div>
+        <div class="holidays-scroll" id="holidays-container">
+          <!-- Holiday cards will be injected here -->
+        </div>
+      </div>
+
+      <!-- Quick Access -->
+      <div class="features-section">
+        <h3 class="section-title">Quick Access</h3>
+        <div class="grid grid-2 gap-lg">
+          <div class="feature-tile" data-color="teal" onclick="App.navigateTo('attendance')">
+            <div class="icon-wrapper"><i class="fas fa-calendar-check"></i></div>
+            <div class="tile-title">Attendance</div>
+            <div class="tile-subtitle">View subject-wise</div>
+          </div>
+          <div class="feature-tile" data-color="purple" onclick="App.navigateTo('materials')">
+            <div class="icon-wrapper"><i class="fas fa-folder"></i></div>
+            <div class="tile-title">Materials</div>
+            <div class="tile-subtitle">Study resources</div>
+          </div>
+          <div class="feature-tile" data-color="pink" onclick="App.navigateTo('results')">
+            <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
+            <div class="tile-title">Results</div>
+            <div class="tile-subtitle">Your results</div>
+          </div>
+          <div class="feature-tile" data-color="blue" onclick="App.navigateTo('calendar')">
+            <div class="icon-wrapper"><i class="fas fa-calendar-alt"></i></div>
+            <div class="tile-title">Calendar</div>
+            <div class="tile-subtitle">Events & holidays</div>
+          </div>
+          <div class="feature-tile" data-color="green" onclick="App.navigateTo('profile')">
+            <div class="icon-wrapper"><i class="fas fa-user"></i></div>
+            <div class="tile-title">Profile</div>
+            <div class="tile-subtitle">Your details</div>
+          </div>
+          <div class="feature-tile" data-color="coral" onclick="App.navigateTo('timetable')">
+            <div class="icon-wrapper"><i class="fas fa-clock"></i></div>
+            <div class="tile-title">Timetable</div>
+            <div class="tile-subtitle">Weekly schedule</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <nav class="dock-navbar">
+        <a href="#" class="nav-item active" data-page="dashboard">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" data-page="attendance">
+          <i class="fas fa-check-circle"></i>
+          <span>Attendance</span>
+        </a>
+        <a href="#" class="nav-item" data-page="materials">
+          <i class="fas fa-folder"></i>
+          <span>Materials</span>
+        </a>
+        <a href="#" class="nav-item" data-page="profile">
+          <i class="fas fa-user"></i>
+          <span>Profile</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Attendance Page -->
+    <div id="attendance-page" class="attendance-page page" style="display: none;">
+      <div class="app-bar">
+        <button class="back-btn" onclick="App.navigateTo('dashboard')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>Attendance</h1>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" data-tab="overview">
+          <i class="fas fa-chart-pie"></i> Overview
+        </button>
+        <button class="tab" data-tab="subjects">
+          <i class="fas fa-list"></i> Subjects
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content" id="attendance-content">
+        <!-- Overview Tab -->
+        <div id="overview-tab">
+          <div class="overall-card">
+            <div class="overall-stats">
+              <div>
+                <div class="overall-label">Overall Attendance</div>
+                <div class="overall-percentage" id="overall-attendance">--</div>
+                <span class="badge badge-success" id="overall-status">
+                  <i class="fas fa-check"></i> On Track
+                </span>
+              </div>
+              <div id="pie-chart" style="width: 120px; height: 120px;">
+                <!-- Pie chart will be rendered here -->
+              </div>
+            </div>
+          </div>
+
+          <h3 class="section-title">Subject Comparison</h3>
+          <div class="card mb-xl">
+            <div id="bar-chart" style="height: 220px;">
+              <!-- Bar chart will be rendered here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Subjects Tab -->
+        <div id="subjects-tab" style="display: none;">
+          <div id="subjects-list">
+            <!-- Subject cards will be injected here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <nav class="dock-navbar">
+        <a href="#" class="nav-item" data-page="dashboard">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item active" data-page="attendance">
+          <i class="fas fa-check-circle"></i>
+          <span>Attendance</span>
+        </a>
+        <a href="#" class="nav-item" data-page="materials">
+          <i class="fas fa-folder"></i>
+          <span>Materials</span>
+        </a>
+        <a href="#" class="nav-item" data-page="profile">
+          <i class="fas fa-user"></i>
+          <span>Profile</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profile-page" class="profile-page page" style="display: none;">
+      <div class="animated-bg">
+        <div class="app-bar" style="background: transparent;">
+          <button class="back-btn" onclick="App.navigateTo('dashboard')">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h1>Profile</h1>
+          <div style="width: 48px;"></div>
+        </div>
+
+        <!-- Profile Header -->
+        <div class="profile-header">
+          <div class="profile-avatar" id="profile-avatar">ST</div>
+          <div class="profile-name" id="profile-name">Student Name</div>
+          <div class="profile-email" id="profile-email">student@gcet.ac.in</div>
+          <div class="enrollment-badge" id="profile-enrollment">XXXXXXXXXX</div>
+        </div>
+      </div>
+
+      <!-- Profile Content -->
+      <div class="profile-content">
+        <!-- Stats Row -->
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <div class="icon" style="color: #4CAF50;"><i class="fas fa-check-circle"></i></div>
+            <div class="value" id="profile-stat-attendance">--%</div>
+            <div class="label">Attendance</div>
+          </div>
+          <div class="profile-stat">
+            <div class="icon" style="color: #2196F3;"><i class="fas fa-folder"></i></div>
+            <div class="value" id="profile-stat-materials">--</div>
+            <div class="label">Materials</div>
+          </div>
+          <div class="profile-stat">
+            <div class="icon" style="color: #9C27B0;"><i class="fas fa-book"></i></div>
+            <div class="value" id="profile-stat-subjects">--</div>
+            <div class="label">Subjects</div>
+          </div>
+        </div>
+
+        <!-- Academic Details -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+            <h3>Academic Details</h3>
+          </div>
+          <div class="info-row">
+            <span class="label">Branch</span>
+            <span class="value" id="profile-branch">--</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Semester</span>
+            <span class="value" id="profile-semester">--</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Section</span>
+            <span class="value" id="profile-section">--</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Batch</span>
+            <span class="value" id="profile-batch">--</span>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="icon" style="background: rgba(255, 193, 7, 0.1); color: #FFC107;">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Quick Actions</h3>
+          </div>
+          <div class="action-row" onclick="App.navigateTo('idcard')">
+            <div class="icon" style="background: rgba(63, 81, 181, 0.1); color: #3F51B5;">
+              <i class="fas fa-id-card"></i>
+            </div>
+            <span class="label">View ID Card</span>
+            <i class="fas fa-chevron-right chevron"></i>
+          </div>
+          <div class="action-row" onclick="App.navigateTo('results')">
+            <div class="icon" style="background: rgba(255, 87, 34, 0.1); color: #FF5722;">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <span class="label">View Results</span>
+            <i class="fas fa-chevron-right chevron"></i>
+          </div>
+        </div>
+
+        <!-- Settings -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="icon" style="background: rgba(156, 39, 176, 0.1); color: #9C27B0;">
+              <i class="fas fa-cog"></i>
+            </div>
+            <h3>Settings</h3>
+          </div>
+          <div class="settings-row">
+            <div class="left">
+              <i class="fas fa-moon" style="color: #FFC107;"></i>
+              <span>Dark Mode</span>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="dark-mode-toggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Logout Button -->
+        <button class="btn btn-danger btn-block mt-xl" id="profile-logout-btn">
+          <i class="fas fa-sign-out-alt"></i> Sign Out
+        </button>
+
+        <p class="text-center text-secondary mt-lg" style="font-size: 12px;">MyGCET v1.0</p>
+      </div>
+
+      <!-- Bottom Navigation -->
+      <nav class="dock-navbar">
+        <a href="#" class="nav-item" data-page="dashboard">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" data-page="attendance">
+          <i class="fas fa-check-circle"></i>
+          <span>Attendance</span>
+        </a>
+        <a href="#" class="nav-item" data-page="materials">
+          <i class="fas fa-folder"></i>
+          <span>Materials</span>
+        </a>
+        <a href="#" class="nav-item active" data-page="profile">
+          <i class="fas fa-user"></i>
+          <span>Profile</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Timetable Page -->
+    <div id="timetable-page" class="timetable-page page" style="display: none;">
+      <div class="app-bar">
+        <button class="back-btn" onclick="App.navigateTo('dashboard')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>My Timetable</h1>
+        <button class="back-btn" onclick="App.showTimetableSettings()" title="Settings">
+          <i class="fas fa-cog"></i>
+        </button>
+      </div>
+
+      <!-- Day Selector -->
+      <div class="day-selector" id="day-selector">
+        <!-- Day buttons will be injected here -->
+      </div>
+
+      <!-- Timetable Content -->
+      <div class="timetable-content" id="timetable-content">
+        <!-- Class cards will be injected here -->
+      </div>
+
+      <!-- Add Class FAB -->
+      <button class="fab" id="add-class-fab">
+        <i class="fas fa-plus"></i> Add Class
+      </button>
+
+      <!-- Bottom Navigation -->
+      <nav class="dock-navbar">
+        <a href="#" class="nav-item" data-page="dashboard">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" data-page="attendance">
+          <i class="fas fa-check-circle"></i>
+          <span>Attendance</span>
+        </a>
+        <a href="#" class="nav-item" data-page="materials">
+          <i class="fas fa-folder"></i>
+          <span>Materials</span>
+        </a>
+        <a href="#" class="nav-item" data-page="profile">
+          <i class="fas fa-user"></i>
+          <span>Profile</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- ID Card Page -->
+    <div id="idcard-page" class="idcard-page page" style="display: none;">
+      <div class="app-bar">
+        <button class="back-btn" onclick="App.navigateTo('profile')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>Student ID Card</h1>
+        <div style="width: 48px;"></div>
+      </div>
+
+      <div class="idcard-content">
+        <div class="id-card">
+          <div class="id-card-bg">
+            <div class="id-card-overlay"></div>
+
+            <!-- Header -->
+            <div class="id-card-header">
+              <div class="id-card-logo">
+                <img src="assets/images/logo.png" alt="GCET">
+              </div>
+              <div class="id-card-college">
+                <h2>GCET</h2>
+                <p>G H Patel College of<br>Engineering & Technology</p>
+              </div>
+              <i class="fas fa-wifi nfc-icon"></i>
+            </div>
+
+            <!-- Photo & Name -->
+            <div class="id-card-photo">
+              <div class="photo-circle" id="idcard-avatar">ST</div>
+              <div class="student-name" id="idcard-name">STUDENT NAME</div>
+              <div class="enrollment-pill" id="idcard-enrollment">XXXXXXXXXX</div>
+            </div>
+
+            <!-- Info Grid -->
+            <div class="id-card-info">
+              <div class="info-grid">
+                <div class="info-grid-row">
+                  <span class="label">Branch</span>
+                  <span class="value" id="idcard-branch">Engineering</span>
+                </div>
+                <div class="info-columns">
+                  <div class="info-column">
+                    <span class="label">Sem</span>
+                    <span class="value" id="idcard-semester">--</span>
+                  </div>
+                  <div class="info-column">
+                    <span class="label">Sec</span>
+                    <span class="value" id="idcard-section">--</span>
+                  </div>
+                  <div class="info-column" id="idcard-batch-container">
+                    <span class="label">Batch</span>
+                    <span class="value" id="idcard-batch">--</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="id-card-footer">
+              <i class="fas fa-check-circle"></i>
+              <span>Valid for Academic Year 2025-2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Materials Page -->
+    <div id="materials-page" class="page" style="display: none;">
+      <div class="app-bar">
+        <button class="back-btn" onclick="App.navigateTo('dashboard')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>Materials</h1>
+      </div>
+      <div class="p-lg" id="materials-content">
+        <div class="empty-state">
+          <div class="empty-icon"><i class="fas fa-folder-open"></i></div>
+          <div class="empty-title">No Materials</div>
+          <div class="empty-text">Materials from your courses will appear here</div>
+        </div>
+      </div>
+
+      <nav class="dock-navbar">
+        <a href="#" class="nav-item" data-page="dashboard">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" data-page="attendance">
+          <i class="fas fa-check-circle"></i>
+          <span>Attendance</span>
+        </a>
+        <a href="#" class="nav-item active" data-page="materials">
+          <i class="fas fa-folder"></i>
+          <span>Materials</span>
+        </a>
+        <a href="#" class="nav-item" data-page="profile">
+          <i class="fas fa-user"></i>
+          <span>Profile</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Results Page -->
+    <div id="results-page" class="page" style="display: none;">
+      <div class="app-bar">
+        <button class="back-btn" onclick="App.navigateTo('dashboard')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>Results</h1>
+      </div>
+      <div class="p-lg" id="results-content">
+        <div class="empty-state">
+          <div class="empty-icon"><i class="fas fa-chart-bar"></i></div>
+          <div class="empty-title">No Results</div>
+          <div class="empty-text">Your exam results will appear here</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calendar Page -->
+    <div id="calendar-page" class="page" style="display: none;">
+      <div class="app-bar">
+        <button class="back-btn" onclick="App.navigateTo('dashboard')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1>Academic Calendar</h1>
+      </div>
+      <div class="p-lg" id="calendar-content">
+        <div class="empty-state">
+          <div class="empty-icon"><i class="fas fa-calendar"></i></div>
+          <div class="empty-title">No Events</div>
+          <div class="empty-text">Academic events will appear here</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Class Modal -->
+  <div class="modal-overlay" id="add-class-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <i class="fas fa-plus-circle" style="color: var(--primary-blue); font-size: 24px;"></i>
+        <h3>Add New Class</h3>
+      </div>
+      <div class="modal-body">
+        <form id="add-class-form">
+          <div class="form-group">
+            <label class="form-label">Subject Name *</label>
+            <input type="text" class="form-input" id="class-subject" placeholder="e.g. Data Structures" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject Code</label>
+            <input type="text" class="form-input" id="class-code" placeholder="e.g. CS301">
+          </div>
+          <div class="grid grid-2 gap-md">
+            <div class="form-group">
+              <label class="form-label">Faculty</label>
+              <input type="text" class="form-input" id="class-faculty" placeholder="Faculty name">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Room</label>
+              <input type="text" class="form-input" id="class-room" placeholder="e.g. 301">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Day *</label>
+            <select class="form-input" id="class-day" required>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+            </select>
+          </div>
+          <div class="grid grid-2 gap-md">
+            <div class="form-group">
+              <label class="form-label">Start Time *</label>
+              <input type="time" class="form-input" id="class-start" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">End Time *</label>
+              <input type="time" class="form-input" id="class-end" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              <input type="checkbox" id="class-is-lab"> This is a Lab session
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="App.closeModal('add-class-modal')">Cancel</button>
+        <button class="btn btn-primary" onclick="App.addNewClass()">Add Class</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/gms-api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
